@@ -17,7 +17,11 @@ pub struct Channel {}
 
 /// The index of the node and TRS property that an animation channel targets.
 #[derive(Clone, Debug, Default, Deserialize, Serialize, Validate)]
-pub struct Target {}
+pub struct Target {
+    #[cfg(feature = "extensions")]
+    #[serde(default, flatten)]
+    pub others: Map<String, Value>,
+}
 
 /// Defines a keyframe graph but not its target.
 #[derive(Clone, Debug, Default, Deserialize, Serialize, Validate)]
